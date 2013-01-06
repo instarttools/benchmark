@@ -51,7 +51,6 @@ function sendTimesToExtension() {
     return;
   }
   var load_times = window.chrome.loadTimes();
-  var perf_times = window.performance.timing;
   var dom = window.document.getElementsByTagName('*');
 
   var depths = new Array(3);
@@ -60,20 +59,7 @@ function sendTimesToExtension() {
 
   // If the load is not finished yet, schedule a timer to check again in a
   // little bit.
-  // It is possible in some scenarios that loadEventStart does not trigger.
-  // We wait at max for 60 seconds before going forward.
-  var curr_time = (new Date()).getTime();
-  if (load_times.finishLoadTime != 0 &&
-      (perf_times.loadEventStart > 0 ||
-       (perf_times.fetchStart > 0 && curr_time - perf_times.fetchStart > 60000))) {
-
-    if (perf_times.loadEventStart > 0) {
-      load_times.finishLoadTime = perf_times.loadEventStart/1000.0;
-    } else {
-      load_times.finishLoadTime = curr_time/1000.0;
-    }
-    load_times.startLoadTime = perf_times.fetchStart/1000.0;
-
+  if (load_times.finishLoadTime != 0) {
     benchmarkExtensionPort.postMessage({message: 'load',
                                         url: benchmarkExtensionUrl,
                                         values: load_times,

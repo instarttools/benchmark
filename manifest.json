@@ -1,14 +1,19 @@
 {
-   "background_page": "background.html",
-   "browser_action": {
-      "default_icon": "stopwatch.jpg",
-      "default_title": "Benchmark page load time"
-   },
-   "description": "Chromium Page Benchmarker.",
-   "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCy+Zryd7Ku57K5/DrnNnK6qMyDd2e2Ax5O5YMtaO+MnbFFmCDEDTVEDTrjpckxvSHoVWQeREStlBGaZKGEUp1FUGl1sURba5ZfwzDgg2KLcjnW8RMzGs6wYJ9Xg/2lVgjwoag3r3RcN1YP+Ozgpp+q+W4JB4vBqTcM2cLrhHc4ywIDAQAB",
-   "name": "Page Benchmarker",
-   "options_page": "options.html",
-   "permissions": [ "tabs", "https://*/*", "http://*/*" ],
-   "update_url": "http://clients2.google.com/service/update2/crx",
-   "version": "1.3.3.0"
+  "name": "Page Benchmarker",
+  "version": "1.3.4.0",
+  "manifest_version": 2,
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "description": "Chromium Page Benchmarker.",
+  "background": {
+    "page": "background.html",
+    "persistent": false
+  },
+  "browser_action": {
+    "default_title": "Benchmark page load time",
+    "default_icon": "stopwatch.jpg"
+  },
+  "options_page": "options.html",
+  "permissions": [
+    "tabs", "https://*/*", "http://*/*"
+  ]
 }
